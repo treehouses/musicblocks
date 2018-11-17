@@ -155,9 +155,10 @@ var SOUNDSAMPLESDEFINES = [
     "samples/chime", "samples/cricket", "samples/fingercymbal",
     "samples/slap", "samples/clang", "samples/cup", "samples/floortom",
     "samples/snare", "samples/piano", "samples/acguit", "samples/banjo",
-    "samples/koto", "samples/gong", "samples/dulcimer", "samples/electricguitar",
-    "samples/bagpipes", "samples/beep", "samples/bird", "samples/broken_glass",
-    "samples/clock", "samples/police", "samples/water_splash"
+    "samples/koto", "samples/gong", "samples/dulcimer",
+    "samples/electricguitar", "samples/bagpipes", "samples/beep",
+    "samples/bird", "samples/broken_glass", "samples/clock",
+    "samples/police", "samples/water_splash"
 ]
 
 // The sample has a pitch which is subsequently transposed.
@@ -178,7 +179,7 @@ const SAMPLECENTERNO = {
     'koto': ['C5', 51],  // pitchToNumber('C', 5, 'C Major')],
     'dulcimer': ['C4', 39],  // pitchToNumber('C', 4, 'C Major')],
     'electricguitar': ['C3', 27],  // pitchToNumber('C', 3, 'C Major')],
-    'bagpipes': ['A#2', 25], //pitchToNumber('A#',2,'C Major')],
+    'bagpipes': ['A#2', 25], // pitchToNumber('A#',2,'C Major')],
 };
 
 
@@ -489,7 +490,7 @@ function Synth() {
 		{'name': 'bird', 'data': BIRD_SAMPLE},
 		{'name': 'broken_glass', 'data': BROKEN_GLASS_SAMPLE},
 		{'name': 'clock', 'data': CLOCK_SAMPLE},
-		{'name': 'police', 'data': POLCIE_SAMPLE},
+		{'name': 'police', 'data': POLICE_SAMPLE},
 		{'name': 'water_splash', 'data': WATER_SPLASH_SAMPLE}
             ]
         }
