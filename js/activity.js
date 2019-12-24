@@ -3802,7 +3802,7 @@ function Activity() {
      * Ran once dom is ready and editable
      * Sets up dependencies and vars
      */
-    this.domReady = async function (doc) {
+    this.domReady = function (doc) {
         // _onResize = _onResize;
         // var that = this;
         // window.onblur = functionf () {
@@ -3830,7 +3830,7 @@ function Activity() {
         ERRORARTWORK = ['emptybox', 'emptyheap', 'negroot', 'noinput', 'zerodivide', 'notanumber', 'nostack', 'notastring', 'nomicrophone'];
 
         // Get things started
-        await this.init();
+        this.init();
     };
 
     /*
