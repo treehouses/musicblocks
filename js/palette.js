@@ -100,7 +100,7 @@ function Palettes () {
 
     this.init = function () {
 	setTimeout(function(){
-	    console.deug('Making palette selectors.');
+	    console.debug('Making palette selectors.');
             this.halfCellSize = Math.floor(this.cellSize / 2);
             for (var i = 0; i < MULTIPALETTES.length; i++) {
 		this._makeSelectorButton(i);
