@@ -103,8 +103,8 @@ function Palettes () {
 
 	function __init() {
         // await delayExecution(1000);
-	// setTimeout(function(){
-	    console.debug('Making palette selectors.');
+	setTimeout(function() {
+	    console.debug('MAKING palette selectors.');
             that.halfCellSize = Math.floor(that.cellSize / 2);
             for (var i = 0; i < MULTIPALETTES.length; i++) {
 		that._makeSelectorButton(i);
@@ -112,7 +112,7 @@ function Palettes () {
 		// This is the top of the palette buttons stack
 		that.y.push((that.top + LEADING) / PALETTE_SCALE_FACTOR);
             }
-	// }, 15000);
+	}, 15000);
 	};
 	__init();
     };
