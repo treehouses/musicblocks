@@ -32,7 +32,6 @@ function paletteBlockButtonPush(blocks, name, arg) {
     return blk;
 };
 
-
 // There are several components to the palette system:
 //
 // (1) A palette button (in the Palettes.buttons dictionary) is a
@@ -100,13 +99,16 @@ function Palettes () {
     this.pluginPalettes = [];  // List of palettes not in multipalette list
 
     this.init = function () {
-        this.halfCellSize = Math.floor(this.cellSize / 2);
-        for (var i = 0; i < MULTIPALETTES.length; i++) {
-            this._makeSelectorButton(i);
-            this.x.push(0);
-            // This is the top of the palette buttons stack
-            this.y.push((this.top + LEADING) / PALETTE_SCALE_FACTOR);
-        }
+	setTimeout(function(){
+	    console.deug('Making palette selectors.');
+            this.halfCellSize = Math.floor(this.cellSize / 2);
+            for (var i = 0; i < MULTIPALETTES.length; i++) {
+		this._makeSelectorButton(i);
+		this.x.push(0);
+		// This is the top of the palette buttons stack
+		this.y.push((this.top + LEADING) / PALETTE_SCALE_FACTOR);
+            }
+	}, 9000);
     };
 
     this.deltaY = function (dy) {
