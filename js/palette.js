@@ -2333,11 +2333,11 @@ function initPalettes (palettes) {
         // Give the palettes time to load.
         // We are in no hurry since we are waiting on the splash screen.
         // await delayExecution(1000)
-        console.debug('Time to make the palettes.');
+        console.debug('Time to make the palettes!');
         palettes.show();
         palettes.bringToTop();
         palettes.showSelection(0);
-    }, 10000);
+    }, 15000);
 };
 
 const MODEUNSURE = 0;
@@ -2357,5 +2357,3 @@ function makePaletteBitmap(palette, data, name, callback, extras) {
 
     img.src = 'data:image/svg+xml;base64,' + window.btoa(unescape(encodeURIComponent(data)));
 };
-
-
