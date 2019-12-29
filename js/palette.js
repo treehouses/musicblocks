@@ -109,7 +109,7 @@ function Palettes () {
 		// This is the top of the palette buttons stack
 		that.y.push((that.top + LEADING) / PALETTE_SCALE_FACTOR);
             }
-	}, 9000);
+	}, 15000);
     };
 
     this.deltaY = function (dy) {
@@ -2333,11 +2333,11 @@ function initPalettes (palettes) {
         // Give the palettes time to load.
         // We are in no hurry since we are waiting on the splash screen.
         // await delayExecution(1000)
-        console.debug('Time to make the palettes!');
+        console.debug('Time to make the palettes!?');
         palettes.show();
         palettes.bringToTop();
         palettes.showSelection(0);
-    }, 15000);
+    }, 10000);
 };
 
 const MODEUNSURE = 0;
