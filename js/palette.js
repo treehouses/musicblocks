@@ -98,9 +98,11 @@ function Palettes () {
     this.labels = {};  // The label for each button.
     this.pluginPalettes = [];  // List of palettes not in multipalette list
 
-    async this.init = function () {
+    this.init = function () {
 	var that = this;
-        await delayExecution(10000);
+
+	function __init() {
+        // await delayExecution(1000);
 	// setTimeout(function(){
 	    console.debug('Making palette selectors.');
             that.halfCellSize = Math.floor(that.cellSize / 2);
@@ -111,6 +113,8 @@ function Palettes () {
 		that.y.push((that.top + LEADING) / PALETTE_SCALE_FACTOR);
             }
 	// }, 15000);
+	};
+	__init();
     };
 
     this.deltaY = function (dy) {
@@ -560,6 +564,7 @@ function Palettes () {
     };
 
     this.show = function () {
+	console.log('SHOW PALETTES ' + this.mobile);
         if (this.mobile) {
             this._hideMenus();
             this.visible = false;
@@ -1552,6 +1557,7 @@ function Palette(palettes, name) {
     };
 
     this.show = function () {
+	console.log('SHOW');
         if (this.palettes.mobile) {
             this.hideMenu();
         } else {
@@ -2320,8 +2326,8 @@ function Palette(palettes, name) {
 };
 
 
-async function initPalettes (palettes) {
-// function initPalettes (palettes) {
+// async function initPalettes (palettes) {
+function initPalettes (palettes) {
     // Instantiate the palettes object on first load.
 
     for (var i = 0; i < BUILTINPALETTES.length; i++) {
@@ -2330,15 +2336,15 @@ async function initPalettes (palettes) {
 
     palettes.makePalettes(true);
 
-    // setTimeout(function () {
+    setTimeout(function () {
         // Give the palettes time to load.
         // We are in no hurry since we are waiting on the splash screen.
-    await delayExecution(10000);
+    // await delayExecution(15000);
         console.debug('Time to make the palettes!?');
         palettes.show();
         palettes.bringToTop();
         palettes.showSelection(0);
-    // }, 10000);
+    }, 10000);
 };
 
 const MODEUNSURE = 0;
