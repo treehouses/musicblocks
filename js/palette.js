@@ -99,14 +99,15 @@ function Palettes () {
     this.pluginPalettes = [];  // List of palettes not in multipalette list
 
     this.init = function () {
+	var that = this;
 	setTimeout(function(){
 	    console.debug('Making palette selectors.');
-            this.halfCellSize = Math.floor(this.cellSize / 2);
+            that.halfCellSize = Math.floor(that.cellSize / 2);
             for (var i = 0; i < MULTIPALETTES.length; i++) {
-		this._makeSelectorButton(i);
-		this.x.push(0);
+		that._makeSelectorButton(i);
+		that.x.push(0);
 		// This is the top of the palette buttons stack
-		this.y.push((this.top + LEADING) / PALETTE_SCALE_FACTOR);
+		that.y.push((that.top + LEADING) / PALETTE_SCALE_FACTOR);
             }
 	}, 9000);
     };
