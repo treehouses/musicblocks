@@ -32,6 +32,7 @@ function paletteBlockButtonPush(blocks, name, arg) {
     return blk;
 };
 
+
 // There are several components to the palette system:
 //
 // (1) A palette button (in the Palettes.buttons dictionary) is a
@@ -99,22 +100,13 @@ function Palettes () {
     this.pluginPalettes = [];  // List of palettes not in multipalette list
 
     this.init = function () {
-	var that = this;
-
-	function __init() {
-        // await delayExecution(1000);
-	setTimeout(function() {
-	    console.debug('MAKING palette selectors.');
-            that.halfCellSize = Math.floor(that.cellSize / 2);
-            for (var i = 0; i < MULTIPALETTES.length; i++) {
-		that._makeSelectorButton(i);
-		that.x.push(0);
-		// This is the top of the palette buttons stack
-		that.y.push((that.top + LEADING) / PALETTE_SCALE_FACTOR);
-            }
-	}, 15000);
-	};
-	__init();
+        this.halfCellSize = Math.floor(this.cellSize / 2);
+        for (var i = 0; i < MULTIPALETTES.length; i++) {
+            this._makeSelectorButton(i);
+            this.x.push(0);
+            // This is the top of the palette buttons stack
+            this.y.push((this.top + LEADING) / PALETTE_SCALE_FACTOR);
+        }
     };
 
     this.deltaY = function (dy) {
@@ -564,7 +556,6 @@ function Palettes () {
     };
 
     this.show = function () {
-	console.log('SHOW PALETTES ' + this.mobile);
         if (this.mobile) {
             this._hideMenus();
             this.visible = false;
@@ -1557,7 +1548,6 @@ function Palette(palettes, name) {
     };
 
     this.show = function () {
-	console.log('SHOW');
         if (this.palettes.mobile) {
             this.hideMenu();
         } else {
@@ -2326,7 +2316,7 @@ function Palette(palettes, name) {
 };
 
 
-// async function initPalettes (palettes) {
+// async  function initPalettes (palettes) {
 function initPalettes (palettes) {
     // Instantiate the palettes object on first load.
 
@@ -2339,12 +2329,12 @@ function initPalettes (palettes) {
     setTimeout(function () {
         // Give the palettes time to load.
         // We are in no hurry since we are waiting on the splash screen.
-    // await delayExecution(15000);
-        console.debug('Time to make the palettes!?');
+        // await delayExecution(1000)
+        console.debug('Time to show the palettes.');
         palettes.show();
         palettes.bringToTop();
         palettes.showSelection(0);
-    }, 10000);
+    }, 3000);
 };
 
 const MODEUNSURE = 0;
@@ -2364,3 +2354,5 @@ function makePaletteBitmap(palette, data, name, callback, extras) {
 
     img.src = 'data:image/svg+xml;base64,' + window.btoa(unescape(encodeURIComponent(data)));
 };
+
+
