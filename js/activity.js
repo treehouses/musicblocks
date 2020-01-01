@@ -3986,8 +3986,6 @@ function Activity() {
             .setBlocks(blocks)
             .init();
 
-        initPalettes(palettes);
-
         logo = new Logo();
         logo
             .setCanvas(canvas)
@@ -4453,6 +4451,9 @@ function Activity() {
 
         window.saveLocally = saveLocally;
         logo.setSaveLocally(saveLocally);
+
+	// Befor macros and plugins
+        initPalettes(palettes);
 
         var __clearFunction = function () {
             sendAllToTrash(true, false);
