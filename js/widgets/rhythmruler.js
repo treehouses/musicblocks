@@ -341,7 +341,7 @@ function RhythmRuler () {
             that._inLongPress = false;
 
             that._longPressBeep = setTimeout(function () {
-                that._logo.synth.trigger(0, 'C4', 1 / 32, 'chime', null, null);
+                // that._logo.synth.trigger(0, 'C4', 1 / 32, 'chime', null, null);
 
                 var cell = that._mouseDownCell;
                 if (cell !== null && cell.parentNode !== null) {
