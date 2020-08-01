@@ -1,4 +1,40 @@
-language: node_js
-node_js:
-  - "iojs"
-  - "8"
+sudo: required
+
+addons:
+  apt:
+    update: true
+    packages:
+    - docker-ce
+services:
+- docker
+script:
+- export DOCKER_CLI_EXPERIMENTAL=enabled
+- source sha_function.sh
+- flag=$(is_base "treehouses/musicblocks:latest" "treehouses/nginx:latest")
+- echo $flag
+- echo "$DOCKERPASS" | docker login -u sevenseas --password-stdin
+- docker run --rm --privileged multiarch/qemu-user-static --reset -p yes
+- "./docker-build.sh treehouses/nginx:latest arm"
+- "./docker-build.sh treehouses/nginx:latest arm64"
+- "./docker-build.sh treehouses/nginx:latest amd64"
+before_deploy:
+- timetag=$(date +%Y%m%d%H%M)
+- echo $timetag
+- tag1="latest"
+- tag2=$timetag
+- echo "timetag is $tag2"
+- create_manifest treehouses/musicblocks $tag1 $tag2 treehouses/musicblocks-tags:amd64
+  treehouses/musicblocks-tags:arm treehouses/musicblocks-tags:arm64
+- docker manifest inspect treehouses/musicblocks:$tag1
+- docker manifest inspect treehouses/musicblocks:$tag2
+deploy:
+- provider: script
+  script: docker manifest push treehouses/musicblocks:$tag1; docker manifest push
+    treehouses/musicblocks:$tag2
+  skip_cleanup: true
+  on:
+    all_branches: true
+    condition: "$flag = true"
+env:
+  global:
+  - secure: HK6r+EgNmqEL/7AJKbSrFpHpE4R9cHKk9aM4Zc5yBz6gW6BBYIsT7UpZTl9Jd1fwMgFCjMIvOPNFwXCSwbKb4aXZOzGAavy+xsOZJXGlyUh9Tis+zUdbhGi83VmHphDmPgATKxYA7UAuEY/NguxQd04DG0ZhDVPX5rMWmb/uG2ZDcWeVwoLUr3EDkcUTFpCNLy+XBkEgDauPX4hZK0KJDcZrPV7ufUQkH+Spm8fYmNW92GfrLBV/rnF3UTrb9DtJw9jGgY49J2fSzRgX00ve1XfXBFGRrOxMNRVPpNTvi7T+38WiZVXulajwsCjLcI0aO6zzWrJ1Lp0F+ObLgqF4UsdnGrgesCxN7N1LUsbMZbgJn54anq51SHAVl54NGZM1g8NihzNu8CLP9OO/rb97kqumlRnKblZXNCPkohYbChvcziSN4gMKKbiJ0xYyL3poktNM4hcGRofWLLYuCpJrJFkyeeC9tTZCoCFV1lhfWq2fnBlYohiChFc7T6kXrqcTNZw7a6oQDrK9IVKj40cq9Gs/upFGftWtf+sWs3I/jQdmLZty3LaHMC2K42S6iYJ+8cYTCE39no3VhQQmNImmTqONa4OXbpylNSVpj5MDMARGGEvGwbkmJ+dP5kr8aNWngYrF6k+FdhlyBTNGvbbVvKb6wVsc0JjXlFqOa2+W5sM=
