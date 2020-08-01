@@ -6,9 +6,10 @@ RUN apk --no-cache upgrade \
 WORKDIR /var/lib/nginx
 
 RUN rm -rf html \
-    && git clone --depth=1 https://github.com/sugarlabs/turtleblocksjs.git \
-    && mv -f turtleblocksjs html
+    && git clone --depth=1 https://github.com/sugarlabs/musicblocks.git \
+    && mv -f musicblocks html
 
-EXPOSE 80 443
+EXPOSE 80 443 3000
 
 CMD ["nginx", "-g", "daemon off;"]
+
