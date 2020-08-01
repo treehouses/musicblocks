@@ -14,7 +14,7 @@ echo $base_image
 arch=$2   # arm arm64 amd64
 
 if [ -n "$sha" ]; then
-        tag=treehouses/musicblocksjs-tags:$arch
+        tag=treehouses/musicblocks-tags:$arch
         #sed "s|{{base_image}}|$base_image|g" Dockerfile.template > /tmp/Dockerfile.$arch
         sed "s|{{base_image}}|$base_image|g" Dockerfile.template > Dockerfile.$arch
         #cat /tmp/Dockerfile.$arch
