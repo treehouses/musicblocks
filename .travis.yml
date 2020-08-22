@@ -10,7 +10,25 @@ services:
 script:
 - export DOCKER_CLI_EXPERIMENTAL=enabled
 - source sha_function.sh
-- flag=$(is_base "treehouses/musicblocks:latest" "treehouses/nginx:latest")
+- music_arm_sha=$(get_manifest_sha "treehouses/musicblocks:latest" "arm")
+- echo $music_arm_sha
+- nginx_arm_sha=$(get_manifest_sha "treehouses/nginx:latest" "arm")
+- echo $nginx_arm_sha
+- flag_arm=$(is_base "treehouses/musicblocks@"$music_arm_sha "treehouses/nginx@"$nginx_arm_sha )
+- echo $flag_arm
+- music_amd64_sha=$(get_manifest_sha "treehouses/musicblocks:latest" "amd64")
+- echo $music_amd64_sha
+- nginx_amd64_sha=$(get_manifest_sha "treehouses/nginx:latest" "amd64")
+- echo $nginx_amd64_sha
+- flag_amd64=$(is_base "treehouses/musicblocks@"$music_amd64_sha "treehouses/nginx@"$nginx_amd64_sha )
+- echo $flag_amd64
+- music_arm64_sha=$(get_manifest_sha "treehouses/musicblocks:latest" "arm64")
+- echo $music_arm64_sha
+- nginx_arm64_sha=$(get_manifest_sha "treehouses/nginx:latest" "arm64")
+- echo $nginx_arm64_sha
+- flag_arm64=$(is_base "treehouses/musicblocks@"$music_arm64_sha "treehouses/nginx@"$nginx_arm64_sha )
+- echo $flag_arm64
+- flag=$(compare "treehouses/musicblocks@"$music_arm_sha "treehouses/nginx@"$nginx_arm_sha "treehouses/musicblocks@"$music_amd64_sha "treehouses/nginx@"$nginx_amd64_sha "treehouses/musicblocks@"$music_arm64_sha "treehouses/nginx@"$nginx_arm64_sha)
 - echo $flag
 - echo "$DOCKERPASS" | docker login -u sevenseas --password-stdin
 - docker run --rm --privileged multiarch/qemu-user-static --reset -p yes
@@ -27,14 +45,14 @@ before_deploy:
   treehouses/musicblocks-tags:arm treehouses/musicblocks-tags:arm64
 - docker manifest inspect treehouses/musicblocks:$tag1
 - docker manifest inspect treehouses/musicblocks:$tag2
-deploy:
-- provider: script
-  script: docker manifest push treehouses/musicblocks:$tag1; docker manifest push
-    treehouses/musicblocks:$tag2
-  skip_cleanup: true
-  on:
-    all_branches: true
-    condition: "$flag = true"
+#deploy:
+#- provider: script
+#  script: docker manifest push treehouses/musicblocks:$tag1; docker manifest push
+#    treehouses/musicblocks:$tag2
+#  skip_cleanup: true
+#  on:
+#    all_branches: true
+#    condition: "$flag = true"
 env:
   global:
   - secure: HK6r+EgNmqEL/7AJKbSrFpHpE4R9cHKk9aM4Zc5yBz6gW6BBYIsT7UpZTl9Jd1fwMgFCjMIvOPNFwXCSwbKb4aXZOzGAavy+xsOZJXGlyUh9Tis+zUdbhGi83VmHphDmPgATKxYA7UAuEY/NguxQd04DG0ZhDVPX5rMWmb/uG2ZDcWeVwoLUr3EDkcUTFpCNLy+XBkEgDauPX4hZK0KJDcZrPV7ufUQkH+Spm8fYmNW92GfrLBV/rnF3UTrb9DtJw9jGgY49J2fSzRgX00ve1XfXBFGRrOxMNRVPpNTvi7T+38WiZVXulajwsCjLcI0aO6zzWrJ1Lp0F+ObLgqF4UsdnGrgesCxN7N1LUsbMZbgJn54anq51SHAVl54NGZM1g8NihzNu8CLP9OO/rb97kqumlRnKblZXNCPkohYbChvcziSN4gMKKbiJ0xYyL3poktNM4hcGRofWLLYuCpJrJFkyeeC9tTZCoCFV1lhfWq2fnBlYohiChFc7T6kXrqcTNZw7a6oQDrK9IVKj40cq9Gs/upFGftWtf+sWs3I/jQdmLZty3LaHMC2K42S6iYJ+8cYTCE39no3VhQQmNImmTqONa4OXbpylNSVpj5MDMARGGEvGwbkmJ+dP5kr8aNWngYrF6k+FdhlyBTNGvbbVvKb6wVsc0JjXlFqOa2+W5sM=
