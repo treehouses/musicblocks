@@ -14,21 +14,21 @@ script:
 - echo $music_arm_sha
 - nginx_arm_sha=$(get_manifest_sha "treehouses/nginx:latest" "arm")
 - echo $nginx_arm_sha
-- flag_arm=$(is_base "treehouses/musicblocks@"$music_arm_sha "treehouses/nginx@"$nginx_arm_sha )
+- flag_arm=$(is_base "treehouses/nginx@"$nginx_arm_sha "treehouses/musicblocks@"$music_arm_sha)
 - echo $flag_arm
 - music_amd64_sha=$(get_manifest_sha "treehouses/musicblocks:latest" "amd64")
 - echo $music_amd64_sha
 - nginx_amd64_sha=$(get_manifest_sha "treehouses/nginx:latest" "amd64")
 - echo $nginx_amd64_sha
-- flag_amd64=$(is_base "treehouses/musicblocks@"$music_amd64_sha "treehouses/nginx@"$nginx_amd64_sha )
+- flag_amd64=$(is_base "treehouses/nginx@"$nginx_amd64_sha "treehouses/musicblocks@"$music_amd64_sha)
 - echo $flag_amd64
 - music_arm64_sha=$(get_manifest_sha "treehouses/musicblocks:latest" "arm64")
 - echo $music_arm64_sha
 - nginx_arm64_sha=$(get_manifest_sha "treehouses/nginx:latest" "arm64")
 - echo $nginx_arm64_sha
-- flag_arm64=$(is_base "treehouses/musicblocks@"$music_arm64_sha "treehouses/nginx@"$nginx_arm64_sha )
+- flag_arm64=$(is_base "treehouses/nginx@"$nginx_arm64_sha "treehouses/musicblocks@"$music_arm64_sha)
 - echo $flag_arm64
-- flag=$(compare "treehouses/musicblocks@"$music_arm_sha "treehouses/nginx@"$nginx_arm_sha "treehouses/musicblocks@"$music_amd64_sha "treehouses/nginx@"$nginx_amd64_sha "treehouses/musicblocks@"$music_arm64_sha "treehouses/nginx@"$nginx_arm64_sha)
+- flag=$(compare "treehouses/nginx@"$nginx_arm_sha "treehouses/musicblocks@"$music_arm_sha "treehouses/nginx@"$nginx_amd64_sha "treehouses/musicblocks@"$music_amd64_sha "treehouses/nginx@"$nginx_arm64_sha "treehouses/musicblocks@"$music_arm64_sha)
 - echo $flag
 before_deploy:
 - echo "$DOCKERPASS" | docker login -u sevenseas --password-stdin
