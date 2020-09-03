@@ -7,6 +7,6 @@ tag_arch_time=treehouses/musicblocks-tags:$arch-$tag_time
 echo $tag_arch_time
 
 docker tag $tag_arch $tag_arch_time
-dokcer push $tag_arch_time
+docker push $tag_arch_time
 docker tag $tag_arch_time $tag_arch
 docker push $tag_arch
