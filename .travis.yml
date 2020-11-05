@@ -30,16 +30,15 @@ script:
 - echo $flag_arm64
 - flag=$(compare "treehouses/nginx@"$nginx_arm_sha "treehouses/musicblocks@"$music_arm_sha "treehouses/nginx@"$nginx_amd64_sha "treehouses/musicblocks@"$music_amd64_sha "treehouses/nginx@"$nginx_arm64_sha "treehouses/musicblocks@"$music_arm64_sha)
 - echo $flag
-- flag="false"
 before_deploy:
 - echo "$DOCKERPASS" | docker login -u sevenseas --password-stdin
 - docker run --rm --privileged multiarch/qemu-user-static --reset -p yes
 - "./docker-build.sh treehouses/nginx:latest arm"
 - "./docker-build.sh treehouses/nginx:latest arm64"
 - "./docker-build.sh treehouses/nginx:latest amd64"
-- build_image "treehouses/nginx:latest" arm "treehoues/musicblocks" #base image is arm arch
-- build_image "treehouses/nginx:latest" amd64 "treehoues/musicblocks" #base image is amd64 arch
-- build_image "treehouses/nginx:latest" arm64 "treehoues/musicblocks" #base image is arm64 arch
+- build_image "treehouses/nginx:latest" arm "treehouses/musicblocks" #base image is arm arch
+- build_image "treehouses/nginx:latest" amd64 "treehouses/musicblocks" #base image is amd64 arch
+- build_image "treehouses/nginx:latest" arm64 "treehouses/musicblocks" #base image is arm64 arch
 #before_deploy: #in case we want to check the code ...
 - deploy_image "treehouses/musicblocks" arm
 - deploy_image "treehouses/musicblocks" amd64
