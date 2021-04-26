@@ -19,16 +19,16 @@ jobs:
           export DOCKER_CLI_EXPERIMENTAL=enabled
           repo="jleekwong/musicblocks"
           source .github/workflows/utils.sh
-          #music_arm_sha=$(get_manifest_sha "$repo:latest" "arm")
-          #echo $music_arm_sha
-          #nginx_arm_sha=$(get_manifest_sha "treehouses/nginx:latest" "arm")
-          #echo $nginx_arm_sha
-          #flag_arm=$(is_base "treehouses/nginx@"$nginx_arm_sha "$repo@"$music_arm_sha)
-          #echo $flag_arm
-          #music_amd64_sha=$(get_manifest_sha "$repo:latest" "amd64")
-          #echo $music_amd64_sha
-          #nginx_amd64_sha=$(get_manifest_sha "treehouses/nginx:latest" "amd64")
-          #echo $nginx_amd64_sha
+          music_arm_sha=$(get_manifest_sha "$repo:latest" "arm")
+          echo $music_arm_sha
+          nginx_arm_sha=$(get_manifest_sha "treehouses/nginx:latest" "arm")
+          echo $nginx_arm_sha
+          flag_arm=$(is_base "treehouses/nginx@"$nginx_arm_sha "$repo@"$music_arm_sha)
+          echo $flag_arm
+          music_amd64_sha=$(get_manifest_sha "$repo:latest" "amd64")
+          echo $music_amd64_sha
+          nginx_amd64_sha=$(get_manifest_sha "treehouses/nginx:latest" "amd64")
+          echo $nginx_amd64_sha
           #flag_amd64=$(is_base "treehouses/nginx@"$nginx_amd64_sha "$repo@"$music_amd64_sha)
           #echo $flag_amd64
           #music_arm64_sha=$(get_manifest_sha "$repo:latest" "arm64")
