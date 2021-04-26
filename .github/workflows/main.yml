@@ -20,7 +20,7 @@ jobs:
           repo="jleekwong/musicblocks"
           source .github/workflows/utils.sh
           music_arm_sha=$(get_manifest_sha "$repo:latest" "arm")
-          echo $music_arm_sha
+          #echo $music_arm_sha
           #nginx_arm_sha=$(get_manifest_sha "treehouses/nginx:latest" "arm")
           #echo $nginx_arm_sha
           #flag_arm=$(is_base "treehouses/nginx@"$nginx_arm_sha "$repo@"$music_arm_sha)
