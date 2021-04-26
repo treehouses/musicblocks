@@ -18,3 +18,5 @@ jobs:
         run: |
           export DOCKER_CLI_EXPERIMENTAL=enabled
           repo="jleekwong/musicblocks"
+          source .github/workflows/utils.sh
+          music_arm_sha=$(get_manifest_sha "$repo:latest" "arm")
