@@ -6,7 +6,7 @@ on:
     - cron: '0 */8 * * *'
 
 jobs:
-  turtle-docker-image-build:
+  musicblocks-docker-image-build:
     runs-on: ubuntu-latest
 
     steps:
@@ -17,4 +17,4 @@ jobs:
       - name: treehouses musicblocks
         run: |
           export DOCKER_CLI_EXPERIMENTAL=enabled
-
+          repo="jleekwong/musicblocks"
