@@ -35,12 +35,12 @@ jobs:
           echo $music_arm64_sha
           nginx_arm64_sha=$(get_manifest_sha "treehouses/nginx:latest" "arm64")
           echo $nginx_arm64_sha
-          flag_arm64=$(is_base "treehouses/nginx@"$nginx_arm64_sha "$repo@"$music_arm64_sha)
-          echo $flag_arm64
-          flag=$(compare "treehouses/nginx@"$nginx_arm_sha "treehouses/musicblocks@"$music_arm_sha "treehouses/nginx@"$nginx_amd64_sha "treehouses/musicblocks@"$music_amd64_sha "treehouses/nginx@"$nginx_arm64_sha "treehouses/musicblocks@"$music_arm64_sha)
-          echo $flag
-          if [[ $flag == true ]]; then
-            docker run --rm --privileged multiarch/qemu-user-static --reset -p yes
+          #flag_arm64=$(is_base "treehouses/nginx@"$nginx_arm64_sha "$repo@"$music_arm64_sha)
+          #echo $flag_arm64
+          #flag=$(compare "treehouses/nginx@"$nginx_arm_sha "treehouses/musicblocks@"$music_arm_sha "treehouses/nginx@"$nginx_amd64_sha "treehouses/musicblocks@"$music_amd64_sha "treehouses/nginx@"$nginx_arm64_sha "treehouses/musicblocks@"$music_arm64_sha)
+          #echo $flag
+          #if [[ $flag == true ]]; then
+          #  docker run --rm --privileged multiarch/qemu-user-static --reset -p yes
           #  build_image "treehouses/nginx:latest" arm "$repo" #base image is arm arch
           #  build_image "treehouses/nginx:latest" amd64 "$repo" #base image is amd64 arch
           #  build_image "treehouses/nginx:latest" arm64 "$repo" #base image is arm64 arch
